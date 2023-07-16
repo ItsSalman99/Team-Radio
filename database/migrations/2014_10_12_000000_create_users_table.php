@@ -15,17 +15,26 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('avatar')->nullable();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('profile_picture')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('username')->unique();
-            $table->string('phone');
-            $table->string('dob');
+            $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('token')->nullable();
+            $table->string('dob')->nullable();
+            $table->string('helmet_color')->nullable();
+            $table->string('team_color')->nullable();
+            // $table->string('car_number')->nullable();
+            // $table->string('favourite_driver')->nullable();
+            // $table->string('favourite_team')->nullable();
+            // $table->string('favourite_race')->nullable();
+            // $table->string('country')->nullable();
             $table->string('msg_ribbon')->nullable();
+            $table->unsignedBigInteger('car_number_id')->nullable();
+            $table->foreign('car_number_id')->references('id')->on('car_numbers')->onDelete('cascade');
             $table->unsignedBigInteger('country_id')->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->unsignedBigInteger('driver_id')->nullable();
@@ -34,6 +43,7 @@ class CreateUsersTable extends Migration
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->unsignedBigInteger('race_id')->nullable();
             $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade');
+            $table->boolean('status')->nullable()->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

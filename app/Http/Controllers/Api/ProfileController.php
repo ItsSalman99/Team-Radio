@@ -16,11 +16,11 @@ class ProfileController extends Controller
         $user = User::where('token', $token)->first();
 
         if ($user) {
-            if($request->hasFile('avatar'))
+            if($request->hasFile('profile_picture'))
             {
-                $filename = $request->getSchemeAndHttpHost() . '/users/avatars/' . $request->avatar->getClientOriginalName();
-
-                $user->avatar = $filename;
+                $filename = $request->getSchemeAndHttpHost() . '/upload/users/profile/' . $request->profile_picture->getClientOriginalName();
+                $request->profile_picture->move(public_path('/upload/users/profile/'), $filename);
+                $user->profile_picture = $filename;
             }
             $user->first_name = $request->first_name != null ? $request->first_name : $user->first_name;
             $user->last_name = $request->last_name != null ? $request->last_name : $user->last_name;
@@ -38,6 +38,8 @@ class ProfileController extends Controller
             else{
                 $user->email = $request->email != null ? $request->email : $user->email;
             }
+
+            $user->car_number_id = $request->car_number_id != null ? $request->car_number_id : $user->car_number_id;;
 
             $user->team_id = $request->team_id != null ? $request->team_id : $user->team_id;
             $user->driver_id = $request->driver_id != null ? $request->driver_id : $user->driver_id;

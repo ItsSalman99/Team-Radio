@@ -13,9 +13,13 @@ Route::prefix('user')->group(function () {
 
     Route::post('/register', [AuthenticationController::class, 'register']);
     Route::post('/login', [AuthenticationController::class, 'login']);
+    Route::get('/getLoggedIn', [AuthenticationController::class, 'getLoggedIn']);
+    Route::post('/verifyPhone', [AuthenticationController::class, 'verifyPhone']);
 
     Route::post('reset-password', [ProfileController::class, 'resetPassword']);
     Route::post('update-profile', [ProfileController::class, 'updateProfile']);
+
+    Route::post('delete/account', [ProfileController::class, 'deleteAccount']);
 
 });
 

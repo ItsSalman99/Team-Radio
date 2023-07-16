@@ -52,6 +52,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function car_number()
+    {
+        return $this->belongsTo(CarNumber::class, 'car_number_id', 'id');
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
