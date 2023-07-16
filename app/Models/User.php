@@ -18,9 +18,19 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'avatar',
+        'first_name',
+        'last_name',
+        'username',
+        'phone',
+        'dob',
         'email',
         'password',
+        'msg_ribbon',
+        'country_id',
+        'driver_id',
+        'team_id',
+        'race_id'
     ];
 
     /**
@@ -41,4 +51,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
+
+    public function race()
+    {
+        return $this->belongsTo(Race::class);
+    }
+
 }
