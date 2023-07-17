@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,7 @@ class ProfileController extends Controller
         $user = User::where('token', $token)->first();
 
         if ($user) {
-            if($request->hasFile('profile_picture'))
-            {
+            if ($request->hasFile('profile_picture')) {
                 $filename = $request->getSchemeAndHttpHost() . '/upload/users/profile/' . $request->profile_picture->getClientOriginalName();
                 $request->profile_picture->move(public_path('/upload/users/profile/'), $filename);
                 $user->profile_picture = $filename;
@@ -28,14 +28,12 @@ class ProfileController extends Controller
             $user->dob = $request->dob != null ? $request->dob : $user->dob;
             $user->msg_ribbon = $request->msg_ribbon != null ? $request->msg_ribbon : $user->msg_ribbon;
 
-            if(User::where('email', $request->email)->first())
-            {
+            if (User::where('email', $request->email)->first()) {
                 return response()->json([
                     'status' => false,
                     'msg' => 'Email already in use!'
                 ]);
-            }
-            else{
+            } else {
                 $user->email = $request->email != null ? $request->email : $user->email;
             }
 
@@ -84,5 +82,49 @@ class ProfileController extends Controller
             'status' => false,
             'msg' => 'Invalid User!'
         ]);
+    }
+
+    public function changePassword(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'msg' => $validator->errors()->first()
+            ]);
+        }
+
+        $token = request()->bearerToken();
+
+        $user = User::where('token', $token)->first();
+
+        if ($user) {
+
+            if (Hash::check($request->old_password, $user->password)) {
+
+                $user->password = Hash::make($request->password);
+                $user->save();
+
+                return response()->json([
+                    'status' => true,
+                    'data' => $user
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'msg' => 'Password does not matched!'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'msg' => 'User not found!'
+            ]);
+        }
     }
 }

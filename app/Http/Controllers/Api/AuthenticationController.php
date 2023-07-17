@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Expr\FuncCall;
 
 class AuthenticationController extends Controller
 {
@@ -190,6 +191,36 @@ class AuthenticationController extends Controller
             return response()->json([
                 'status' => false,
                 'msg' => 'Unauthenticated!!'
+            ]);
+        }
+    }
+
+    public function checkUsername(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => true,
+                'msg' => $validator->errors()->first()
+            ]);
+        }
+
+        $user = User::where('username', $request->username)->first();
+
+        if ($user) {
+
+            return response()->json([
+                'status' => true,
+                'data' => $user
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'msg' => 'Not Found!!'
             ]);
         }
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthenticationController;
+use App\Http\Controllers\Api\ForgetPasswordController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\TeamController;
@@ -20,6 +21,16 @@ Route::prefix('user')->group(function () {
     Route::post('update-profile', [ProfileController::class, 'updateProfile']);
 
     Route::post('delete/account', [ProfileController::class, 'deleteAccount']);
+
+    Route::post('checkUser', [AuthenticationController::class, 'checkUsername']);
+
+    Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
+
+    Route::post('forget-password/checkOtp', [ForgetPasswordController::class, 'checkOtp']);
+
+    Route::post('reset-password', [ForgetPasswordController::class, 'resetPassword']);
+
+    Route::post('change-password', [ProfileController::class, 'changePassword']);
 
 });
 

@@ -44,6 +44,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('race_id')->nullable();
             $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade');
             $table->boolean('status')->nullable()->default(1);
+            $table->string('otp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
