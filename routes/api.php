@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\AuthenticationController;
 use App\Http\Controllers\Api\ForgetPasswordController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\ReportReasonController;
+use App\Http\Controllers\Api\ReportUserController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
@@ -59,5 +61,21 @@ Route::prefix('team-members')->group(function () {
 
     Route::get('/', [TeamMemberController::class, 'getAll']);
     Route::post('store', [TeamMemberController::class, 'store']);
+
+});
+
+
+
+Route::prefix('reasons')->group(function () {
+
+    Route::get('/', [ReportReasonController::class, 'getAll']);
+
+});
+
+
+Route::prefix('report')->group(function () {
+
+    Route::get('/user/all', [ReportUserController::class, 'getAll']);
+    Route::post('/user', [ReportUserController::class, 'store']);
 
 });
