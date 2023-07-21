@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\User;
+use App\Models\Username;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -158,15 +159,21 @@ class AuthenticationController extends Controller
             ->first();
 
         if ($user) {
-            return response()->json([
-                'status' => true,
-                'data' => $user
-            ]);
-        } else {
 
             return response()->json([
                 'status' => false,
-                'msg' => 'Not Found!!'
+                'msg' => 'Phone number is already registered!'
+            ]);
+        } else {
+
+            $otp = rand(000000, 999999);
+
+            $user->otp = $otp;
+            $user->save();
+
+            return response()->json([
+                'status' => true,
+                'data' => $otp
             ]);
         }
     }
@@ -209,19 +216,28 @@ class AuthenticationController extends Controller
             ]);
         }
 
-        $user = User::where('username', $request->username)->first();
+        $check = Username::where('username', $request->username)->first();
 
-        if ($user) {
-
-            return response()->json([
-                'status' => true,
-                'data' => $user
-            ]);
-        } else {
+        if ($check) {
             return response()->json([
                 'status' => false,
-                'msg' => 'Not Found!!'
+                'msg' => 'Username already taken!'
             ]);
+        } else {
+            $user = User::where('username', $request->username)->first();
+
+            if ($user) {
+
+                return response()->json([
+                    'status' => false,
+                    'msg' => 'Username already taken!'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => true,
+                    'data' => $request->username
+                ]);
+            }
         }
     }
 }
