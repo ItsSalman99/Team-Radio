@@ -1,0 +1,206 @@
+.xdsoft_datetimepicker .xdsoft_calendar td:hover,
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div:hover {
+  background: var(--bs-primary) !important;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current,
+.xdsoft_datetimepicker
+  .xdsoft_timepicker
+  .xdsoft_time_box
+  > div
+  > div.xdsoft_current,
+.xdsoft_datetimepicker
+  .xdsoft_label
+  > .xdsoft_select
+  > div
+  > .xdsoft_option.xdsoft_current {
+  background: var(--bs-primary) !important;
+  box-shadow: none !important;
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_prev,
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_next {
+  margin-left: 0;
+  background-image: none;
+  width: 100%;
+  height: 20px;
+  float: inherit;
+}
+.xdsoft_datetimepicker
+  .xdsoft_label
+  > .xdsoft_select
+  > div
+  > .xdsoft_option:hover {
+  background: var(--bs-primary) !important;
+}
+.xdsoft_datetimepicker {
+  font-family: "Poppins", sans-serif !important;
+  padding-bottom: 0;
+  padding-top: 0;
+  border: 1px solid var(---bs-border) !important;
+  border-radius: 8px;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  .xdsoft_month {
+    width: 105px;
+  }
+  .xdsoft_year {
+    width: 60px;
+  }
+  .xdsoft_current {
+    font-weight: 500 !important;
+  }
+  .xdsoft_datepicker {
+    width: 270px;
+    margin-left: 0;
+    .xdsoft_label {
+      span {
+        font-weight: 500;
+        color: #7b7b7b;
+      }
+      .xdsoft_select {
+        border-radius: 6px;
+        box-shadow: 1px 1px 20px rgb(0 0 0 / 15%);
+        border: 1px solid var(--bs-border) !important;
+        & > div {
+          & > .xdsoft_option:not(:last-child) {
+            border-bottom: 1px solid var(--bs-border);
+            padding: 5px 13px !important;
+          }
+        }
+        .xdsoft_option {
+          font-weight: 500;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .xdsoft_calendar {
+    th {
+      font-weight: 500;
+    }
+    td {
+      text-align: center !important;
+      &.xdsoft_today {
+        color: var(--bs-primary);
+        &.xdsoft_current {
+          color: white;
+        }
+      }
+    }
+    th,
+    td {
+      width: 14%;
+      height: 33px;
+    }
+  }
+  .xdsoft_timepicker {
+    margin-left: 0;
+    .xdsoft_prev {
+      position: relative;
+      margin-top: 8px;
+
+      &::before {
+        content: "\F286";
+        width: 0;
+        font-family: "bootstrap-icons";
+        position: absolute;
+        top: -5px;
+        left: 32%;
+        opacity: 1;
+        font-size: 20px;
+      }
+    }
+    .xdsoft_next {
+      position: relative;
+      margin-bottom: 8px;
+      &::before {
+        content: "\F282";
+        width: 0;
+        font-family: "bootstrap-icons";
+        position: absolute;
+        top: -5px;
+        left: 32%;
+        opacity: 1;
+        font-size: 20px;
+      }
+    }
+    .xdsoft_time_box {
+      border-radius: 5px;
+      & > div {
+        & > div {
+          border-top: 1px solid var(--bs-border);
+        }
+      }
+    }
+  }
+  .xdsoft_save_selected {
+    display: none !important;
+  }
+}
+
+.xdsoft_scrollbar {
+  width: 5px;
+  & > {
+    .xdsoft_scroller {
+      background: var(--bs-primary);
+    }
+  }
+}
+
+// .xdsoft_select > div > .xdsoft_option:not(:last-child) {
+//   border-bottom: 1px solid var(--bs-border);
+//   padding: 5px !important;
+// }
+
+// .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today {
+//   color: var(--bs-primary);
+// }
+// datepicker input
+
+.DateCard {
+  padding: 8px var(--input-padding);
+  box-shadow: none;
+  border: 1px solid var(--bs-border);
+  color: #7b7b7b;
+  border-radius: 0.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--minHeight);
+  input {
+    border: none;
+    height: 20px !important;
+    width: 125px;
+    font-size: 14px;
+    color: #828282;
+    padding: 0;
+    font-weight: 400;
+    &:last-child {
+      padding-left: 5px;
+    }
+  }
+  i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+
+    color: #7b7b7b;
+  }
+}
+
+.DateCard {
+  padding-left: 45px;
+  input {
+    width: 80px;
+  }
+  p {
+    margin-right: 4px;
+  }
+  i {
+    right: inherit;
+    left: 17px;
+  }
+}

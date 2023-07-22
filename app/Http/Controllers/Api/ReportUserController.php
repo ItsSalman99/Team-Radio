@@ -23,7 +23,7 @@ class ReportUserController extends Controller
         if ($user) {
 
             $reports = UserReport::where('reported_from', $user->id)
-            ->with('reported_from', 'reported_to', 'reason')->get();
+            ->with('reportedfrom', 'reportedto', 'reason')->get();
 
             return response()->json([
                 'status' => true,

@@ -1,0 +1,104 @@
+%status {
+  background: #e6ebf1;
+  color: #455560;
+  margin: 0;
+  padding: 5px 12px;
+  font-size: 13px;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.gray-status {
+  display: inline-block;
+  p {
+    @extend %status;
+  }
+}
+
+.pending-status,
+.draft-status,
+.notactive-status {
+  // width: 95px;
+  display: inline-block;
+  p {
+    @extend %status;
+  }
+}
+
+.active-status,
+.paid-status,
+.published-status,
+.contacted-status,
+.resolved-status,
+.compeleted-status {
+  // width: 95px;
+  display: inline-block;
+  p {
+    @extend %status;
+    background: #14d389;
+    color: white;
+  }
+}
+
+.process-status,
+.expire-status,
+.awaiting-reponse-status {
+  display: inline-block;
+  p {
+    @extend %status;
+    background: #f7941e;
+    color: white;
+  }
+}
+
+.unpaid-status {
+  color: #e7400c;
+}
+
+.ready-status {
+  //  width: 95px;
+  display: inline-block;
+  p {
+    @extend %status;
+    background: #d7ebff;
+    color: #0480f4;
+  }
+}
+
+.deactive-status,
+.suspended-status,
+.rejected-status {
+  display: inline-block;
+  p {
+    @extend %status;
+    background: #fc3030;
+    color: white;
+  }
+}
+
+.Torder-status {
+  color: #00ab6f;
+}
+
+.Tpayment-status {
+  color: #f6821f;
+}
+
+.Treturn-status {
+  color: #f2c94c;
+}
+
+.Tdelivery-status,
+.Tbill-status {
+  color: #1f92f6;
+}
+
+.Tother-status,
+.Tsaleorder-status {
+  color: #e91f22;
+}
+
+.Tanchor-clr {
+  color: #2d9cdb;
+}

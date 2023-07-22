@@ -57,7 +57,7 @@ class AuthenticationController extends Controller
         $user->driver_id = $request->driver_id;
         $user->team_id = $request->team_id;
         $user->race_id = $request->race_id;
-
+        $user->fcm_token = $request->fcm_tokenr;
         $user->save();
 
         $token = $user->createToken("API TOKEN")->plainTextToken;
@@ -238,6 +238,29 @@ class AuthenticationController extends Controller
                     'data' => $request->username
                 ]);
             }
+        }
+    }
+
+    public function logout()
+    {
+        $token = request()->bearerToken();
+
+        $user = User::where('token', '!=', NULL)
+            ->where('token', $token)->first();
+
+        if ($user) {
+            $user->fcm_token = NULL;
+            $user->delete();
+
+            return response()->json([
+                'status' => true,
+                'msg' => 'User deleted successfully!!'
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'msg' => 'Unauthenticated!!'
+            ]);
         }
     }
 }

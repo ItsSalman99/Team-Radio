@@ -1,0 +1,80 @@
+.btn {
+  --bs-btn-padding-x: 10px;
+  --bs-btn-padding-y: 10px;
+  --bs-btn-font-size: 16px;
+  --bs-btn-font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  i {
+    --bs-btn-font-size: 16px;
+  }
+  svg {
+    --bs-btn-font-size: 16px;
+  }
+  &:hover {
+    svg {
+      fill: var(--bs-primary);
+    }
+  }
+}
+.btn-primary {
+  --bs-btn-color: white;
+  --bs-btn-hover-color: white;
+}
+
+.white-btn {
+  background: white;
+  color: var(--bs-dark);
+  &:hover {
+    background: rgb(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+    border-color: var(--bs-primary) !important;
+    i {
+      opacity: 1 !important;
+    }
+  }
+}
+.checkbox-btn {
+  position: relative;
+  overflow: hidden;
+  input[type="radio"] {
+    -webkit-appearance: none;
+    border: none !important;
+    margin: auto;
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    &:checked ~ label {
+      background: var(--primary-clr);
+      border: 1px solid var(--primary-clr);
+      color: white;
+    }
+  }
+  label {
+    cursor: pointer;
+    color: #4f4f4f;
+    font-weight: 400;
+    padding: 10px 15px;
+    border: 1px solid #eeeeee;
+
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    &:hover {
+      background: var(--primary-clr);
+      color: white;
+    }
+  }
+}
+$extra-padding: 15;
+@while $extra-padding <= 80 {
+  .extra-btn-padding-#{$extra-padding} {
+    padding: var(--bs-btn-padding-y) #{$extra-padding}px;
+  }
+  $extra-padding: $extra-padding + 5;
+}

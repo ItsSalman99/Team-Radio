@@ -77,4 +77,9 @@ class User extends Authenticatable
         return $this->belongsTo(Race::class);
     }
 
+    public function getName()
+    {
+        return $this->first_name . ' ' .$this->last_name;
+    }
+
 }

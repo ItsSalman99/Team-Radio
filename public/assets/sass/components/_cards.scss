@@ -1,0 +1,53 @@
+// ################## START CARD AREA  ######################
+.cover-all-content {
+  padding: clamp(15px, 5vw, 32px);
+  padding-top: 2rem;
+}
+
+.card {
+  --bs-card-spacer-y: 2rem;
+  --bs-card-spacer-x: 2rem;
+  --bs-card-border-radius: 10px;
+  --bs-card-border-width: 1px;
+  --bs-card-border-color: var(--bs-border-color);
+  height: calc(100% - 20px);
+  margin-bottom: 1.5rem;
+  &.bgGradientShade-v1 {
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgb(255, 255, 255) 0px,
+        rgb(255, 255, 255) 10px,
+        transparent 10px,
+        transparent 11px
+      ),
+      repeating-linear-gradient(
+        135deg,
+        rgb(255, 255, 255) 0px,
+        rgb(255, 255, 255) 10px,
+        transparent 10px,
+        transparent 11px
+      ),
+      linear-gradient(90deg, hsl(256, 7%, 84%), hsl(256, 7%, 84%));
+  }
+}
+
+.card-title {
+  color: var(--bs-dark);
+  font-weight: 600;
+  font-size: 17px;
+}
+
+// dashboard card
+// sales card
+.salesCard {
+  .icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    padding: 11px;
+    background: rgb(var(--bs-primary-rgb), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('username')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -45,6 +45,8 @@ class CreateUsersTable extends Migration
             $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade');
             $table->boolean('status')->nullable()->default(1);
             $table->string('otp')->nullable();
+            $table->string('fcm_token')->nullable();
+            $table->string('user_type')->nullable()->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

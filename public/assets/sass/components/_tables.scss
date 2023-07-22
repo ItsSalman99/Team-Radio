@@ -1,0 +1,204 @@
+.DTable-top-elements {
+  position: absolute;
+  right: 0;
+  display: flex;
+  width: calc(100% - 163px);
+  margin-left: auto;
+
+  .search-bar {
+    margin-left: auto;
+    i {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+
+      color: #b0b0b0;
+    }
+    input {
+      padding: 10px 20px;
+      padding-left: 40px;
+      border: 1px solid var(--border-clr);
+      background: transparent;
+      &::placeholder {
+        color: #b0b0b0;
+        font-weight: normal;
+      }
+      &:focus {
+        border: 1px solid var(--primary-clr);
+      }
+    }
+  }
+}
+.cover-datatable {
+  .dataTables_length {
+    margin-bottom: 1.5rem;
+  }
+  .dataTables_info {
+    font-weight: 400;
+    font-size: 16px;
+    color: #666666;
+  }
+  // .dataTables_filter {
+  //   visibility: hidden;
+  //   display: none;
+  // }
+  .cover-tab-title {
+    position: absolute;
+  }
+  table {
+    width: 100% !important;
+    border-spacing: 0 1px;
+    // margin-bottom: 3rem !important;
+    border: 1px solid #e0e0e0;
+    background: white;
+
+    .sorting {
+      &::before,
+      &::after {
+        top: 50%;
+
+        transform: translateY(-72%);
+      }
+    }
+    thead {
+      tr {
+        th {
+          font-weight: 600;
+          padding: 20px;
+          font-size: 14px;
+          white-space: nowrap;
+          vertical-align: middle;
+          color: #333333;
+          box-shadow: 0px 1px var(--bs-border-color);
+          &:nth-child(1):not(.dt-checkboxes-cell) {
+            width: 50px !important;
+          }
+          &.dt-checkboxes-cell {
+            padding-inline: 10px;
+
+            input {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        &:not(:last-child) {
+          box-shadow: 0px 1px var(--bs-border-color);
+        }
+        td {
+          border: none;
+          padding-inline: 20px;
+          padding-block: 17px;
+          color: #444444;
+          font-weight: 400;
+          font-size: 15px;
+          vertical-align: middle;
+          white-space: nowrap;
+          &.dt-checkboxes-cell {
+            padding-inline: 10px;
+            input {
+              margin-right: 0;
+            }
+          }
+          span {
+            color: #767b89;
+            font-size: 13px;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+  width: 63px;
+  display: inline-block;
+  padding: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 10px;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: 0.5em;
+  display: inline-block;
+  width: auto;
+  padding: 10px;
+  border: 1px solid var(--bs-border-color);
+}
+.dataTables_paginate {
+  ul.pagination {
+    li a {
+      padding: 12px 20px;
+      color: #666666;
+    }
+    .page-item {
+      &.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      &:first-child a {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      &:last-child a {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      &.disabled {
+        a {
+          color: #b7b7b7;
+        }
+      }
+      // &.next {
+      //   color: #666666;
+
+      // }
+    }
+  }
+}
+table.dataTable.dt-checkboxes-select tbody tr,
+table.dataTable thead th.dt-checkboxes-select-all,
+table.dataTable tbody td.dt-checkboxes-cell {
+  cursor: pointer;
+}
+
+table.dataTable thead th.dt-checkboxes-select-all,
+table.dataTable tbody td.dt-checkboxes-cell {
+  text-align: center;
+  min-width: 48px;
+  max-width: 48px;
+  padding-right: 0px !important;
+}
+
+div.dataTables_wrapper span.select-info,
+div.dataTables_wrapper span.select-item {
+  margin-left: 0.5em;
+}
+
+@media screen and (max-width: 640px) {
+  div.dataTables_wrapper span.select-info,
+  div.dataTables_wrapper span.select-item {
+    margin-left: 0;
+    display: block;
+  }
+}
+
+// End data table

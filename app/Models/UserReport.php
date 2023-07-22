@@ -9,13 +9,13 @@ class UserReport extends Model
 {
     use HasFactory;
 
-    public function reported_from()
+    public function reportedfrom()
     {
         return $this->belongsTo(User::class, 'reported_from', 'id');
     }
 
 
-    public function reported_to()
+    public function reportedto()
     {
         return $this->belongsTo(User::class, 'reported_to', 'id');
     }

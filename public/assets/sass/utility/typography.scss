@@ -1,0 +1,467 @@
+:root {
+  --input-padding: 15px;
+}
+
+html,
+body {
+  --bs-body-font-size: 16px;
+  --bs-body-font-weight: 500;
+  --bs-body-font-family: "Poppins", sans-serif !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004) !important;
+  transition: background 0.3s ease;
+  background: #f1f3f6;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  outline: none;
+}
+
+ul,
+ol {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+
+a {
+  text-decoration: none !important;
+  transition: 0.1s;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+svg {
+  transition: 0.1s;
+}
+
+section {
+  padding: var(--section-padding);
+  position: relative;
+}
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+p {
+  color: #7b7b7b;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+li,
+label {
+  color: var(--bs-heading);
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  display: none;
+  transition: 150ms;
+}
+img[src] {
+  display: block;
+}
+
+i {
+  line-height: normal;
+}
+
+// form setting
+span {
+  font-size: inherit;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  min-height: 45px;
+}
+
+select {
+  cursor: pointer;
+}
+
+.select-box {
+  width: 100%;
+}
+.vr {
+  background-color: #7b7b7b7d;
+  opacity: 1;
+}
+.form-switch {
+  margin: 0;
+  .form-check-input {
+    width: 3em;
+    border-radius: 2em !important;
+    cursor: pointer;
+    &:focus {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+    }
+  }
+}
+.form-check-input {
+  border-color: #cdcdcd;
+  flex-shrink: 0;
+  cursor: pointer;
+  &:checked {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+  }
+  &:focus {
+    border-color: var(--bs-primary);
+    box-shadow: none;
+  }
+}
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--bs-primary);
+  cursor: pointer;
+  &.form-check-input {
+    width: 19px;
+    height: 19px;
+    // background-color: #cdcdcd;
+    // background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+    border-color: #cdcdcd;
+    &:checked {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary) !important;
+      box-shadow: 0px 2px 5px 0px #0000002b;
+    }
+    &:focus {
+      border-color: var(--bs-primary);
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-control {
+  padding: 10px var(--input-padding);
+
+  box-shadow: none;
+  border: 1px solid var(--bs-border-color);
+  font-size: 16px;
+  &::placeholder {
+    color: #71748d;
+  }
+  &:focus {
+    background-color: #fff;
+    border-color: var(--bs-primary);
+    outline: 0;
+    box-shadow: none;
+    &::placeholder {
+      color: var(--bs-primary);
+    }
+    i {
+      color: var(--bs-primary);
+    }
+  }
+}
+
+// end form setting
+// table setting
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-color: var(--bs-border-color);
+}
+
+// .table-hover>tbody>tr:hover>* {
+//     --bs-table-accent-bg: var(--table-hover-clr);
+//     color: var(--table-td-after-hover);
+// }
+.table > :not(:first-child) {
+  border-top: none;
+}
+
+// end table setting
+
+.column-spacing {
+  [class*="col-"] > div {
+    margin: 10px;
+  }
+}
+
+.content-spacing * + * {
+  margin-top: 2rem !important;
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  transition: 0.2s;
+}
+.nl-border-line {
+  li {
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--bs-border-color);
+    }
+  }
+}
+$bl-spacing: 0;
+@while $bl-spacing <= 30 {
+  .bl-spacing-#{$bl-spacing}px {
+    li {
+      &:not(:last-child) {
+        margin-bottom: #{$bl-spacing}px;
+        padding-bottom: #{$bl-spacing}px;
+      }
+    }
+  }
+  $bl-spacing: $bl-spacing + 5;
+}
+
+// title setting
+.page-title {
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--bs-heading);
+    letter-spacing: 0.3px;
+  }
+}
+
+.z-index1 {
+  z-index: 1;
+}
+
+// shadow dots animate
+
+@for $i from 1 through 15 {
+  .padding-inline-#{$i}vw {
+    padding-inline: $i + vw !important;
+  }
+}
+
+@for $i from 1 through 15 {
+  .padding-block-#{$i}vw {
+    padding-block: $i + vw !important;
+  }
+}
+
+/*############################3
+      Start border-radius
+ #########################3*/
+
+@for $i from 0 through 50 {
+  .border-radius-#{$i}px {
+    border-radius: $i +#{"px"};
+  }
+}
+
+/*############################3
+      End border-radius
+ #########################3*/
+
+$while-width: 5;
+@while $while-width <=100 {
+  .width-#{$while-width} {
+    width: $while-width +#{"%"};
+  }
+  $while-width: $while-width + 5;
+}
+
+$while-height: 10;
+@while $while-height <=100 {
+  .height-#{$while-height}vh {
+    height: $while-height + vh;
+  }
+  $while-height: $while-height + 10;
+}
+
+$while-height2: 1;
+@while $while-height2 <= 30 {
+  .height-#{$while-height2}rem {
+    height: $while-height2 + rem;
+  }
+  $while-height2: $while-height2 + 1;
+}
+
+@for $i from 10 through 100 {
+  .font-#{$i}px {
+    font-size: $i + px;
+  }
+}
+
+// sm
+@media screen and (min-width: 576px) {
+  $while-width: 5;
+  @while $while-width <=100 {
+    .width-sm-#{$while-width} {
+      width: $while-width +#{"%"};
+    }
+    $while-width: $while-width + 5;
+  }
+  $while-height: 10;
+  @while $while-height <=100 {
+    .height-sm-#{$while-height}vh {
+      height: $while-height + vh;
+    }
+    $while-height: $while-height + 10;
+  }
+  $while-height2: 1;
+  @while $while-height2 <= 30 {
+    .height-sm-#{$while-height2}rem {
+      height: $while-height2 + rem;
+    }
+    $while-height2: $while-height2 + 1;
+  }
+  @for $i from 10 through 100 {
+    .font-sm-#{$i}px {
+      font-size: $i + px;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-inline-sm-#{$i}vw {
+      padding-inline: $i + vw !important;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-block-sm-#{$i}vw {
+      padding-block: $i + vw !important;
+    }
+  }
+}
+
+// md
+@media screen and (min-width: 768px) {
+  $while-width: 5;
+  @while $while-width <=100 {
+    .width-md-#{$while-width} {
+      width: $while-width +#{"%"};
+    }
+    $while-width: $while-width + 5;
+  }
+  $while-height: 10;
+  @while $while-height <=100 {
+    .height-md-#{$while-height}vh {
+      height: $while-height + vh;
+    }
+    $while-height: $while-height + 10;
+  }
+  $while-height2: 1;
+  @while $while-height2 <= 30 {
+    .height-md-#{$while-height2}rem {
+      height: $while-height2 + rem;
+    }
+    $while-height2: $while-height2 + 1;
+  }
+  @for $i from 10 through 100 {
+    .font-md-#{$i}px {
+      font-size: $i + px;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-inline-md-#{$i}vw {
+      padding-inline: $i + vw !important;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-block-md-#{$i}vw {
+      padding-block: $i + vw !important;
+    }
+  }
+}
+
+// lg
+@media screen and (min-width: 992px) {
+  $while-width: 5;
+  @while $while-width <=100 {
+    .width-lg-#{$while-width} {
+      width: $while-width +#{"%"};
+    }
+    $while-width: $while-width + 5;
+  }
+  $while-height: 10;
+  @while $while-height <=100 {
+    .height-lg-#{$while-height}vh {
+      height: $while-height + vh;
+    }
+    $while-height: $while-height + 10;
+  }
+  $while-height2: 1;
+  @while $while-height2 <= 30 {
+    .height-lg-#{$while-height2}rem {
+      height: $while-height2 + rem;
+    }
+    $while-height2: $while-height2 + 1;
+  }
+  @for $i from 10 through 100 {
+    .font-lg-#{$i}px {
+      font-size: $i + px;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-inline-lg-#{$i}vw {
+      padding-inline: $i + vw !important;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-block-lg-#{$i}vw {
+      padding-block: $i + vw !important;
+    }
+  }
+}
+
+// xl
+@media screen and (min-width: 1200px) {
+  $while-width: 5;
+  @while $while-width <=100 {
+    .width-xl-#{$while-width} {
+      width: $while-width +#{"%"};
+    }
+    $while-width: $while-width + 5;
+  }
+  $while-height: 10;
+  @while $while-height <=100 {
+    .height-xl-#{$while-height}vh {
+      height: $while-height + vh;
+    }
+    $while-height: $while-height + 10;
+  }
+  $while-height2: 1;
+  @while $while-height2 <= 30 {
+    .height-xl-#{$while-height2}rem {
+      height: $while-height2 + rem;
+    }
+    $while-height2: $while-height2 + 1;
+  }
+  @for $i from 10 through 100 {
+    .font-xl-#{$i}px {
+      font-size: $i + px;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-inline-xl-#{$i}vw {
+      padding-inline: $i + vw !important;
+    }
+  }
+  @for $i from 1 through 15 {
+    .padding-block-xl-#{$i}vw {
+      padding-block: $i + vw !important;
+    }
+  }
+}
