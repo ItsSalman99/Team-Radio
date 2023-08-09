@@ -37,7 +37,12 @@ class ProfileController extends Controller
                 $user->email = $request->email != null ? $request->email : $user->email;
             }
 
-            $user->car_number_id = $request->car_number_id != null ? $request->car_number_id : $user->car_number_id;;
+
+            $user->car_number = $request->car_number != null ? $request->car_number : $user->car_number;
+            
+            $user->country = $request->country != null ? $request->country : $user->country;
+
+            // $user->car_number_id = $request->car_number_id != null ? $request->car_number_id : $user->car_number_id;;
 
             $user->team_id = $request->team_id != null ? $request->team_id : $user->team_id;
             $user->driver_id = $request->driver_id != null ? $request->driver_id : $user->driver_id;
@@ -49,10 +54,14 @@ class ProfileController extends Controller
             // $user->race_id = $request->race_id;
 
             $user->save();
+            
+            $user = User::where('id', $user->id)
+            ->with('driver', 'team', 'race')
+            ->first();
 
             return response()->json([
                 'status' => true,
-                'msg' => 'Profile updated successfully!!'
+                'data' => $user
             ]);
         }
 
@@ -101,13 +110,14 @@ class ProfileController extends Controller
 
         $token = request()->bearerToken();
 
-        $user = User::where('token', $token)->first();
+        $user = User::where('token', '!=', NULL)
+        ->where('token', $token)->first();
 
         if ($user) {
 
             if (Hash::check($request->old_password, $user->password)) {
 
-                $user->password = Hash::make($request->password);
+                $user->password = Hash::make($request->new_password);
                 $user->save();
 
                 return response()->json([

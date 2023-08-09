@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\ForgetPasswordController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReportReasonController;
 use App\Http\Controllers\Api\ReportUserController;
+use App\Http\Controllers\Api\RaceController;
+use App\Http\Controllers\Api\DriverController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
@@ -18,14 +20,14 @@ Route::prefix('user')->group(function () {
     Route::post('/login', [AuthenticationController::class, 'login']);
     Route::get('/getLoggedIn', [AuthenticationController::class, 'getLoggedIn']);
 
-    Route::post('/logout', [AuthenticationController::class, 'logout']);
+    Route::get('/logout', [AuthenticationController::class, 'logout']);
 
     Route::post('/verifyPhone', [AuthenticationController::class, 'verifyPhone']);
 
     Route::post('reset-password', [ProfileController::class, 'resetPassword']);
     Route::post('update-profile', [ProfileController::class, 'updateProfile']);
 
-    Route::post('delete/account', [ProfileController::class, 'deleteAccount']);
+    Route::post('delete/account', [AuthenticationController::class, 'deleteAccount']);
 
     Route::post('checkUser', [AuthenticationController::class, 'checkUsername']);
 
@@ -55,7 +57,13 @@ Route::prefix('teams')->group(function () {
 
 Route::prefix('race')->group(function () {
 
-    Route::get('/', [TeamController::class, 'getAll']);
+    Route::get('/', [RaceController::class, 'getAll']);
+
+});
+
+Route::prefix('drivers')->group(function () {
+
+    Route::get('/', [DriverController::class, 'getAll']);
 
 });
 
@@ -80,5 +88,6 @@ Route::prefix('report')->group(function () {
 
     Route::get('/user/all', [ReportUserController::class, 'getAll']);
     Route::post('/user', [ReportUserController::class, 'store']);
+    Route::post('/user/update', [ReportUserController::class, 'updateReason']);
 
 });

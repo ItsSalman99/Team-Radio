@@ -23,10 +23,12 @@ class AuthenticationController extends Controller
             'username' => 'required|unique:users,username',
             'password' => 'required',
             'dob' => 'required',
-            'car_number_id' => 'required',
+            'car_number' => 'required',
+            // 'car_number_id' => 'required',
             'helmet_color' => 'required',
             'team_color' => 'required',
-            'country_id' => 'required',
+            'country' => 'required',
+            // 'country_id' => 'required',
             'driver_id' => 'nullable',
             'team_id' => 'nullable',
             'race_id' => 'nullable'
@@ -34,11 +36,21 @@ class AuthenticationController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'msg' => $validator->errors()->first()
             ]);
         }
+        
+         $check = Username::where('username', $request->username)
+        ->where('available', 0)->first();
 
+        if ($check) {
+            return response()->json([
+                'status' => false,
+                'msg' => 'Username is not available!'
+            ]);
+        }
+        
         $user = new User();
 
         //required
@@ -47,17 +59,20 @@ class AuthenticationController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->country = $request->country;
         $user->phone = $request->phone;
         $user->dob = $request->dob;
-        $user->country_id = $request->country_id;
-        $user->car_number_id = $request->car_number_id;
+        // $user->country_id = $request->country_id;
+        // $user->car_number_id = $request->car_number_id;
+        $user->car_number = $request->car_number;
         $user->helmet_color = $request->helmet_color;
         $user->team_color = $request->team_color;
         //nullable
         $user->driver_id = $request->driver_id;
         $user->team_id = $request->team_id;
         $user->race_id = $request->race_id;
-        $user->fcm_token = $request->fcm_tokenr;
+        $user->fcm_token = $request->fcm_token;
+        // return $user;
         $user->save();
 
         $token = $user->createToken("API TOKEN")->plainTextToken;
@@ -65,9 +80,15 @@ class AuthenticationController extends Controller
         $user = User::where('id', $user->id)->first();
         $user->token = $token;
         $user->save();
-
+        if($check)
+        {
+            $check->available = 0;
+            $check->save();
+            
+        }
+        
         $user = User::where('id', $user->id)
-            ->with('car_number', 'country', 'driver', 'team', 'race')
+            ->with('driver', 'team', 'race')
             ->first();
 
         return response()->json([
@@ -81,25 +102,33 @@ class AuthenticationController extends Controller
 
         $validator = Validator::make($request->all(), [
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'fcm_token' => 'required'
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'msg' => $validator->errors()->first()
             ]);
         }
 
         $user = User::where('username', $request->username)
-            ->with('car_number', 'country', 'driver', 'team', 'race')
+            ->where('user_type', 'user')
+            ->with('driver', 'team', 'race')
             ->first();
 
         if ($user) {
             $check = Hash::check($request->password, $user->password);
 
             if ($check) {
-
+                $user->fcm_token = $request->fcm_token;
+                $user->save();
+                $user = User::where('username', $request->username)
+                ->where('user_type', 'user')
+                ->with('driver', 'team', 'race')
+                ->first();
+                
                 return response()->json([
                     'status' => true,
                     'data' => $user
@@ -123,7 +152,8 @@ class AuthenticationController extends Controller
         $token = request()->bearerToken();
 
         $user = User::where('token', '!=', NULL)
-            ->with('car_number', 'country', 'driver', 'team', 'race')
+        ->where('user_type', 'user')
+            ->with('driver', 'team', 'race')
             ->where('token', $token)->first();
 
         if ($user) {
@@ -149,51 +179,68 @@ class AuthenticationController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'msg' => $validator->errors()->first()
             ]);
         }
 
         $user = User::where('phone', $request->phone)
-            ->with('car_number', 'country', 'driver', 'team', 'race')
-            ->first();
+        ->where('user_type', 'user')
+        ->with('driver', 'team', 'race')
+        ->first();
 
         if ($user) {
 
             return response()->json([
                 'status' => false,
-                'msg' => 'Phone number is already registered!'
+                'msg' => 'Phone number is already in use!'
             ]);
         } else {
 
-            $otp = rand(000000, 999999);
-
-            $user->otp = $otp;
-            $user->save();
 
             return response()->json([
-                'status' => true,
-                'data' => $otp
+                'status' => false,
+                'msg' => 123456
             ]);
         }
     }
 
-    public function deleteAccount()
+    public function deleteAccount(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'msg' => $validator->errors()->first()
+            ]);
+        }
 
         $token = request()->bearerToken();
 
         $user = User::where('token', '!=', NULL)
+        ->where('user_type', 'user')
             ->where('token', $token)->first();
 
         if ($user) {
 
-            $user->delete();
+            if(Hash::check($request->password, $user->password))
+            {
+                $user->delete();
+                return response()->json([
+                    'status' => true,
+                    'msg' => 'User deleted successfully!!'
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status' => false,
+                    'msg' => 'Password does not matched!!'
+                ]);
+            }
 
-            return response()->json([
-                'status' => true,
-                'msg' => 'User deleted successfully!!'
-            ]);
         } else {
             return response()->json([
                 'status' => false,
@@ -211,17 +258,18 @@ class AuthenticationController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'msg' => $validator->errors()->first()
             ]);
         }
 
-        $check = Username::where('username', $request->username)->first();
+        $check = Username::where('username', $request->username)
+        ->where('available', 0)->first();
 
         if ($check) {
             return response()->json([
                 'status' => false,
-                'msg' => 'Username already taken!'
+                'msg' => 'Username is not available!'
             ]);
         } else {
             $user = User::where('username', $request->username)->first();
@@ -246,15 +294,16 @@ class AuthenticationController extends Controller
         $token = request()->bearerToken();
 
         $user = User::where('token', '!=', NULL)
-            ->where('token', $token)->first();
+        ->where('user_type', 'user')
+        ->where('token', $token)->first();
 
         if ($user) {
             $user->fcm_token = NULL;
-            $user->delete();
+            $user->save();
 
             return response()->json([
                 'status' => true,
-                'msg' => 'User deleted successfully!!'
+                'msg' => 'Logged Out!!'
             ]);
         } else {
             return response()->json([

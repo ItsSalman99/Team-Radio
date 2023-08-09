@@ -10,7 +10,7 @@ class ReportReasonController extends Controller
 {
     public function getAll()
     {
-        $reasons = ReportReasons::all();
+        $reasons = ReportReasons::where('status', 1)->get();
 
         return response()->json([
             'status' => true,

@@ -3,7 +3,7 @@
 @section('content')
     <div class="cover-all-content">
         <div class="page-title d-flex align-items-center justify-content-between gap-3 flex-wrap">
-            <h2>Manage Reports</h2>
+            <h2>Reports Management</h2>
         </div>
         <br>
         <br>
@@ -16,7 +16,6 @@
                         <th>Report To</th>
                         <th>Reason</th>
                         <th>Reported At</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,24 +44,7 @@
                                     <p>{{ date('F, j Y', strtotime($item->created_at)) }}</p>
                                 </div>
                             </td>
-                            <td class="text-center">
-                                <ul class="dropdownStyle-v1 m-0">
-                                    <li class="dropdown position-static">
-                                        <a href="javascript:void(0)" class="dropdown-toggle caret-none"
-                                            data-bs-toggle="dropdown" role="button" id="navbarDropdown"
-                                            aria-expanded="false"><i
-                                                class="bi bi-three-dots-vertical font-19px link-dark"></i></a>
-                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <li>
-                                                <a href="#." class="dropdown-item">Block</a>
-                                            </li>
-                                            <li>
-                                                <a href="#." class="dropdown-item text-danger">Delete</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
+                           
                         </tr>
                     @endforeach
                 </tbody>

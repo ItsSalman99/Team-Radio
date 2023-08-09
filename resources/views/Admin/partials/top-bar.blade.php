@@ -8,15 +8,15 @@
             </div>
 
             <div class="logo-sm d-block d-lg-none">
-                <img src="assets/images/logo.png" alt="" class="width-30 width-md-80">
+                <img src="{{asset('assets/images/logo.png')}}" alt="" class="width-30 width-md-80">
             </div>
             <ul class="navbar-nav ms-auto me-lg-0 me-2 align-items-center gap-3">
                 <li class="nav-item dropdown tableDropdown profile">
                     <a class="nav-link d-flex dropdown-toggle caret-none align-items-center gap-2 p-0"
                         id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" data-bs-auto-close="outside"> <img src="assets/images/user.png"
+                        aria-expanded="false" data-bs-auto-close="outside"> <img src="{{ asset('assets/images/user.png') }}"
                             alt="">
-                        <div class="d-none d-lg-block" data-bs-toggle="tooltip" data-bs-title="Login Info">
+                        <div class="d-none d-lg-block" data-bs-toggle="tooltip" data-bs-title="Account Info">
                             <h6 class="text-capitalize m-0  font-15px font-weight-500">{{ Auth::user()->getName() }}</h6>
                         </div>
                     </a>
@@ -25,7 +25,7 @@
                         <li class=" bg-primary-01 border-bottom">
                             <a class="dropdown-item pe-none user-select-none px-3" href="javascript:void(0)">
                                 <div class="d-flex align-items-center gap-2">
-                                    <img src="assets/images/user.png" alt="student-img">
+                                    <img src="{{ asset('assets/images/user.png') }}" alt="student-img">
                                     <div>
                                         <h6 class="font-weight-700 font-18px m-0 text-primary"> {{ Auth::user()->getName() }}
                                         </h6>
@@ -34,7 +34,29 @@
                                 </div>
                             </a>
                         </li>
+                        
+                        <li class="dropdown position-relative">
+                            <a href="#." class="dropdown-item dropdown-toggle caret-none">
+                                <div class="d-flex align-items-center gap-2 text-danger">
+                                    <i class="bi bi-reset font-22px"></i>
+                                    <p class="m-0 d-flex align-items-center justify-content-between flex-1"
+                                        style="color: inherit;">Reset Password</p>
+                                </div>
+                            </a>
 
+                        </li>
+                        
+                         <li class="dropdown position-relative">
+                            <a href="#." class="dropdown-item dropdown-toggle caret-none">
+                                <div class="d-flex align-items-center gap-2 text-danger">
+                                    <i class="bi bi-reset font-22px"></i>
+                                    <p class="m-0 d-flex align-items-center justify-content-between flex-1"
+                                        style="color: inherit;">Two Factor Authentication</p>
+                                </div>
+                            </a>
+
+                        </li>
+                            
                         <li class="dropdown position-relative">
                             <a href="{{ route('user.logout') }}" class="dropdown-item dropdown-toggle caret-none">
                                 <div class="d-flex align-items-center gap-2 text-danger">

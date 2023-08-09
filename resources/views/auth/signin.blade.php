@@ -6,7 +6,7 @@
         <div class="right-box d-flex align-items-center ">
             <div>
                 <div class=" mb-8">
-                    <img src="https://cdn-icons-png.flaticon.com/512/705/705668.png" alt=""
+                    <img src="{{ asset('assets/images/logo.png') }}" alt=""
                         class="width-50 width-md-40 mx-auto mb-3">
                     <div class="text-center">
                         <p class="m-0">Login your Account!</p>

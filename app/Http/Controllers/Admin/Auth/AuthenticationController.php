@@ -38,7 +38,8 @@ class AuthenticationController extends Controller
             ]);
         }
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)
+        ->where('user_type', 'admin')->first();
 
         if ($user) {
 

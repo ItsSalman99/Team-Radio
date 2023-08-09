@@ -28,14 +28,14 @@ class ForgetPasswordController extends Controller
         $user = User::where('phone', $request->phone)->first();
 
         if ($user) {
-            $otp = random_int(000000, 999999);
+            $otp = rand(000000, 999999);
 
-            $user->otp = $otp;
+            $user->otp = 123456;
             $user->save();
 
             return response()->json([
                 'status' => true,
-                'data' => $otp
+                'data' =>123456
             ]);
         } else {
             return response()->json([
