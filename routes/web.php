@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\PushNotificationController;
 use App\Http\Controllers\Admin\FeedBackController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -60,6 +61,12 @@ Route::group(['prefix'=>'dashboard', 'middleware' => 'auth.user'], function(){
     Route::get('settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('legal', [LegalController::class, 'index'])->name('legal');
     
+    Route::get('reset-password', [UsersController::class, 'resetPassword'])->name('resetpassword');
+    Route::get('check-password', [UsersController::class, 'checkPassword'])->name('checkPassword');
+    Route::post('change-password', [UsersController::class, 'changePassword'])->name('changePassword');
+    
+    Route::get('contents', [ContentController::class, 'index'])->name('contents.index');
+    Route::post('contents/store', [ContentController::class, 'store'])->name('contents.store');
 
 });
 

@@ -36,7 +36,7 @@
                         </li>
                         
                         <li class="dropdown position-relative">
-                            <a href="#." class="dropdown-item dropdown-toggle caret-none">
+                            <a href="{{ route('resetpassword') }}" class="dropdown-item dropdown-toggle caret-none">
                                 <div class="d-flex align-items-center gap-2 text-danger">
                                     <i class="bi bi-reset font-22px"></i>
                                     <p class="m-0 d-flex align-items-center justify-content-between flex-1"
@@ -46,16 +46,16 @@
 
                         </li>
                         
-                         <li class="dropdown position-relative">
-                            <a href="#." class="dropdown-item dropdown-toggle caret-none">
-                                <div class="d-flex align-items-center gap-2 text-danger">
-                                    <i class="bi bi-reset font-22px"></i>
-                                    <p class="m-0 d-flex align-items-center justify-content-between flex-1"
-                                        style="color: inherit;">Two Factor Authentication</p>
-                                </div>
-                            </a>
+                        <!-- <li class="dropdown position-relative">-->
+                        <!--    <a href="#." class="dropdown-item dropdown-toggle caret-none">-->
+                        <!--        <div class="d-flex align-items-center gap-2 text-danger">-->
+                        <!--            <i class="bi bi-reset font-22px"></i>-->
+                        <!--            <p class="m-0 d-flex align-items-center justify-content-between flex-1"-->
+                        <!--                style="color: inherit;">Two Factor Authentication</p>-->
+                        <!--        </div>-->
+                        <!--    </a>-->
 
-                        </li>
+                        <!--</li>-->
                             
                         <li class="dropdown position-relative">
                             <a href="{{ route('user.logout') }}" class="dropdown-item dropdown-toggle caret-none">

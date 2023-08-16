@@ -68,6 +68,7 @@
                         <th>Phone</th>
                         <th>Country</th>
                         <th>Flags</th>
+                        <th>Blocked Reason</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -120,6 +121,9 @@
                                 </div>
                             </td>
                             <td>
+                                {{ $item->block_reason }}
+                            </td>
+                            <td>
                                 @if($item->status == 1)
                                     <div class="active-status">
                                         <p>Active</p>
@@ -139,9 +143,10 @@
                                                 class="bi bi-three-dots-vertical font-19px link-dark"></i></a>
                                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <li>
-                                                <a href="#." class="dropdown-item"
+                                                <a class="dropdown-item"
                                                 onclick="blockUser({{$item->id}})"
-                                                data-bs-toggle="modal" data-bs-target="#reasonModal">
+                                                 @if($item->status == 1) data-bs-toggle="modal" data-bs-target="#reasonModal" @endif
+                                                 @if($item->status == 0) href="/dashboard/users/block/{{$item->id}}" @endif>
                                                     @if($item->status == 1)
                                                         Block
                                                     @else

@@ -27,6 +27,9 @@ class ProfileController extends Controller
             $user->phone = $request->phone != null ? $request->phone : $user->phone;
             $user->dob = $request->dob != null ? $request->dob : $user->dob;
             $user->msg_ribbon = $request->msg_ribbon != null ? $request->msg_ribbon : $user->msg_ribbon;
+            
+            $user->helmet_color = $request->helmet_color != null ? $request->helmet_color : $user->helmet_color;
+            $user->team_color = $request->team_color != null ? $request->team_color : $user->team_color;
 
             if (User::where('email', $request->email)->first()) {
                 return response()->json([

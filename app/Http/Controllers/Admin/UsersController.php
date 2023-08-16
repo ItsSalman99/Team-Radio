@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -192,19 +193,18 @@ class UsersController extends Controller
     
     public function blockWithReason(Request $request, $id)
     {
-        
         $user = User::where('id', $id)->first();
-        
+        // dd($user);
         if($user->status == 1)
         {
-            $user->status == 0;
-            $user->block_reason = '';
+            $user->status = 0;
+            $user->block_reason = $request->reason;
             
             $user->save();
         }
         else{
-            $user->status == 1;
-            $user->block_reason = $request->reason;
+            $user->status = 1;
+            $user->block_reason = '';
             
             $user->save();
         }
@@ -224,7 +224,7 @@ class UsersController extends Controller
     {
         
         $user = User::where('id', $id)->first();
-    
+        $user->block_reason = '';
         if($user->status == 1)
         {
             $user->status = 0;
@@ -291,6 +291,45 @@ class UsersController extends Controller
             $user->save();
         }
         
+        return redirect()->back();
+        
+    }
+    
+    public function resetPassword()
+    {
+        
+        return view('Admin.reset-password');
+        
+    }
+    
+    public function checkPassword(Request $request)
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        
+        if(Hash::check($request->password, $user->password))
+        {
+            return response()->json([
+                'status' =>true,
+                'msg' => 'Password Matched!'
+            ]);
+        }
+        else{
+            
+            return response()->json([
+                'status' => false,
+                'msg' => $request->password
+            ]);
+        }
+        
+    }
+    
+    public function changePassword(Request $request)
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
         return redirect()->back();
         
     }

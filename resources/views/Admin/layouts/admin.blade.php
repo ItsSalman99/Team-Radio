@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{{ asset('main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/sass/utility/typography.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/mediaCss/media.css') }}">
+    @stack('extra-css')
 </head>
 
 <body>

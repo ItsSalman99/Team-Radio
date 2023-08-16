@@ -6,13 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\Username;
+use App\Models\PhoneCodes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\Artisan;
+
 
 class AuthenticationController extends Controller
 {
+    function __construct()
+    {
+        Artisan::call('cache:clear');
+        Artisan::call('view:clear');
+        Artisan::call('route:clear');
+    }
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -119,16 +127,25 @@ class AuthenticationController extends Controller
             ->first();
 
         if ($user) {
+            
+            if($user->status == 0)
+            {
+                return response()->json([
+                    'status' => false,
+                    'msg' => 'Your account has been deactivated, Please contact admin!'
+                ],200);
+            }
+            
             $check = Hash::check($request->password, $user->password);
 
             if ($check) {
                 $user->fcm_token = $request->fcm_token;
+                $user->is_online = 1;
                 $user->save();
                 $user = User::where('username', $request->username)
                 ->where('user_type', 'user')
                 ->with('driver', 'team', 'race')
                 ->first();
-                
                 return response()->json([
                     'status' => true,
                     'data' => $user
@@ -150,14 +167,23 @@ class AuthenticationController extends Controller
     public function getLoggedIn()
     {
         $token = request()->bearerToken();
-
-        $user = User::where('token', '!=', NULL)
-        ->where('user_type', 'user')
+        
+        
+        $user = User::where('token', $token)
             ->with('driver', 'team', 'race')
-            ->where('token', $token)->first();
+            ->first();
 
         if ($user) {
-
+            
+            if($user->status == 0)
+            {
+                return response()->json([
+                    'status' => false,
+                    'msg' => 'blocked'
+                ]);
+            }
+            
+                
             return response()->json([
                 'status' => true,
                 'data' => $user
@@ -196,13 +222,60 @@ class AuthenticationController extends Controller
                 'msg' => 'Phone number is already in use!'
             ]);
         } else {
-
-
+            
+            $new_code = new PhoneCodes();
+            $new_code->phone = $request->phone;
+            $new_code->code = 123456;
+            $new_code->save();
+    
             return response()->json([
-                'status' => false,
+                'status' => true,
                 'msg' => 123456
             ]);
         }
+    }
+    
+    public function verifyOtp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'phone' => 'required',
+            'code' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'msg' => $validator->errors()->first()
+            ]);
+        }
+        
+        $check = PhoneCodes::where('phone', $request->phone)->first();
+        
+        if($check)
+        {
+            if($check->code == $request->code)
+            {
+                return response()->json([
+                    'status' => true,
+                    'msg' => 'Otp Verified'
+                ]);
+                
+            }
+            else{
+                return response()->json([
+                    'status' => false,
+                    'msg' => 'Invalid Otp'
+                ]);
+            }
+        }
+        else{
+            return response()->json([
+                'status' => false,
+                'msg' => 'Not Found!'
+            ]);
+        }
+        
+        
     }
 
     public function deleteAccount(Request $request)
@@ -288,6 +361,66 @@ class AuthenticationController extends Controller
             }
         }
     }
+    
+    public function checkEmail(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'msg' => $validator->errors()->first()
+            ]);
+        }
+
+        $check = User::where('email', $request->email)->first();
+        
+        if ($check) {
+            return response()->json([
+                'status' => false,
+                'msg' => 'Email is already taken!'
+            ]);
+        } else {
+
+            return response()->json([
+                'status' => true,
+                'data' => $request->email
+            ]);
+        }
+    }
+    
+    public function checkPhone(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'phone' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'msg' => $validator->errors()->first()
+            ]);
+        }
+
+        $check = User::where('phone', $request->phone)->first();
+        
+        if ($check) {
+            return response()->json([
+                'status' => false,
+                'msg' => 'Phone is already taken!'
+            ]);
+        } else {
+
+            return response()->json([
+                'status' => true,
+                'data' => $request->phone
+            ]);
+        }
+    }
 
     public function logout()
     {
@@ -299,6 +432,7 @@ class AuthenticationController extends Controller
 
         if ($user) {
             $user->fcm_token = NULL;
+            $user->is_online = 0;
             $user->save();
 
             return response()->json([

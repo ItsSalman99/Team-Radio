@@ -59,6 +59,10 @@
                         <div class="sb-nav-link-icon"><i class="fa fa-user font-20px"></i></div>
                         Support Users
                     </a>
+                    <a class="nav-link <?php if(request()->is('dashboard/contents')) { echo 'active';} ?>" style="margin-bottom: 130px;" href="{{ route('contents.index') }}">
+                        <div class="sb-nav-link-icon"><i class="bi bi-pencil-square font-20px"></i></div>
+                        Contents
+                    </a>
                 </div>
 
             </div>

@@ -4,66 +4,153 @@
     <div class="cover-all-content">
         <div class="page-title d-flex align-items-center justify-content-between gap-3 flex-wrap">
             <h2>Dashboard</h2>
-
+        </div>
+        <div class="page-title d-flex align-items-center justify-content-between gap-3 flex-wrap">
+            <p class="font-18px"><b>Summary</b></p>
         </div>
         <br>
         <br>
 
         <div class="row gx-3">
 
-            <div class="col-6 col-lg-4 col-xl-3">
+            <div class="col-2 col-lg-2 col-xl-2">
                 <div class="card primary-border-hover">
                     <div class="card-body">
                         <div class="salesCard d-flex align-items-center gap-3">
-                            <div class="icon flex-shrink-0">
+                            <!--<div class="icon flex-shrink-0">-->
                                 <!-- <i class="fa fa-burger-soda font-28px text-primary"></i> -->
-                                <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""
-                                    style="width: 30px; filter:var(--image-primary-filter)">
-                            </div>
+                            <!--    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""-->
+                            <!--        style="width: 30px; filter:var(--image-primary-filter)">-->
+                            <!--</div>-->
                             <div>
                                 <h3 class="fw-600 font-25px font-md-32px mb-1">
-                                    {{ $totalUser }}
+                                    450
                                 </h3>
-                                <h6 class=" fw-400 font-14px m-0">Total Users</h6>
+                                <h6 class=" fw-400 font-14px m-0">Active Users</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-6 col-lg-4 col-xl-3">
+            <div class="col-2 col-lg-2 col-xl-2">
                 <div class="card primary-border-hover">
                     <div class="card-body">
                         <div class="salesCard d-flex align-items-center gap-3">
-                            <div class="icon flex-shrink-0">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""
-                                    style="width: 30px; filter:var(--image-primary-filter)">
-                            </div>
+                            <!--<div class="icon flex-shrink-0">-->
+                            <!--    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""-->
+                            <!--        style="width: 30px; filter:var(--image-primary-filter)">-->
+                            <!--</div>-->
                             <div>
                                 <h3 class="fw-600 font-25px font-md-32px mb-1">
-                                    {{ $totalSupportUser }}
+                                    450
                                 </h3>
-                                <h6 class=" fw-400 font-14px m-0">Total Support Users</h6>
+                                <h6 class=" fw-400 font-14px m-0">InActive Users</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col-6 col-lg-4 col-xl-3">
+            <div class="col-2 col-lg-2 col-xl-2">
                 <div class="card primary-border-hover">
                     <div class="card-body">
                         <div class="salesCard d-flex align-items-center gap-3">
-                            <div class="icon flex-shrink-0">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""
-                                    style="width: 30px; filter:var(--image-primary-filter)">
-                            </div>
+                            <!--<div class="icon flex-shrink-0">-->
+                            <!--    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""-->
+                            <!--        style="width: 30px; filter:var(--image-primary-filter)">-->
+                            <!--</div>-->
                             <div>
                                 <h3 class="fw-600 font-25px font-md-32px mb-1">
-                                    {{ $totalUserNames }}
+                                    450
                                 </h3>
                                 <h6 class=" fw-400 font-14px m-0">
-                                    Total User Names
+                                    Total Downloads
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="col-2 col-lg-2 col-xl-2">
+                <div class="card primary-border-hover">
+                    <div class="card-body">
+                        <div class="salesCard d-flex align-items-center gap-3">
+                            <!--<div class="icon flex-shrink-0">-->
+                            <!--    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""-->
+                            <!--        style="width: 30px; filter:var(--image-primary-filter)">-->
+                            <!--</div>-->
+                            <div>
+                                <h3 class="fw-600 font-25px font-md-32px mb-1">
+                                    450
+                                </h3>
+                                <h6 class=" fw-400 font-14px m-0">
+                                    Last 7 Days
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-2 col-lg-2 col-xl-2">
+                <div class="card primary-border-hover">
+                    <div class="card-body">
+                        <div class="salesCard d-flex align-items-center gap-3">
+                            <!--<div class="icon flex-shrink-0">-->
+                            <!--    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""-->
+                            <!--        style="width: 30px; filter:var(--image-primary-filter)">-->
+                            <!--</div>-->
+                            <div>
+                                <h3 class="fw-600 font-25px font-md-32px mb-1">
+                                    90%
+                                </h3>
+                                <h6 class=" fw-400 font-14px m-0">
+                                    Last 1 Month
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 col-lg-2 col-xl-2">
+                <div class="card primary-border-hover">
+                    <div class="card-body">
+                        <div class="salesCard d-flex align-items-center gap-3">
+                            <!--<div class="icon flex-shrink-0">-->
+                            <!--    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""-->
+                            <!--        style="width: 30px; filter:var(--image-primary-filter)">-->
+                            <!--</div>-->
+                            <div>
+                                <h3 class="fw-600 font-25px font-md-32px mb-1">
+                                    10%
+                                </h3>
+                                <h6 class=" fw-400 font-14px m-0">
+                                    Churn
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 col-lg-2 col-xl-2">
+                <div class="card primary-border-hover">
+                    <div class="card-body">
+                        <div class="salesCard d-flex align-items-center gap-3">
+                            <!--<div class="icon flex-shrink-0">-->
+                            <!--    <img src="https://cdn-icons-png.flaticon.com/512/3239/3239045.png" alt=""-->
+                            <!--        style="width: 30px; filter:var(--image-primary-filter)">-->
+                            <!--</div>-->
+                            <div>
+                                <h3 class="fw-600 font-25px font-md-32px mb-1">
+                                    50
+                                </h3>
+                                <h6 class=" fw-400 font-14px m-0">
+                                    Returning Users
                                 </h6>
                             </div>
                         </div>
@@ -97,93 +184,93 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between flex-nowrap gap-lg-16 gap-xl-3">
-                            <h5 class="card-title mb-0 flex-shrink-0">
-                                Active Users
-                            </h5>
-                        </div>
-                        <br>
-                        <div style="height: 350px; overflow-y: auto">
-                            <ul class="bl-spacing-5px">
-                                @foreach($activeUsers as $user)
-                                <li>
-                                    <div class="d-flex align-items-start align-items-lg-center trendingItems gap-2">
-                                        <h3 class="font-18px mb-0 flex-shrink-0" style="width: 43px;">
-                                            #{{ $user->id }}
-                                        </h3>
-                                        <div class="d-flex align-items-center flex-wrap gap-2 gap-lg-3">
-                                             <img src="{{asset($user->profile_picture)}}" alt="" style="width: 50px; height: 50px;box-shadow: 0px 0px 8px 0px #1F1F1F40; border:1px solid var(--bs-primary)" class="border-radius-6px" draggable="false" loading="lazy"> 
-                                            <div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" class="link-dark font-16px d-block text-truncate"
-                                                            style="width: 190px;">
-                                            {{ $user->getName() }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                                <p class="fw-400 m-0 font-14px text-primary"><span
-                                                        class=" fw-600">created_at:</span> 
-                                                {{ date('d, F, Y', strtotime($user->created_at)) }} </p>
-                                            </div>
-                                        </div>
+            <!--<div class="col-xl-6">-->
+            <!--    <div class="card">-->
+            <!--        <div class="card-body">-->
+            <!--            <div class="d-flex align-items-center justify-content-between flex-nowrap gap-lg-16 gap-xl-3">-->
+            <!--                <h5 class="card-title mb-0 flex-shrink-0">-->
+            <!--                    Active Users-->
+            <!--                </h5>-->
+            <!--            </div>-->
+            <!--            <br>-->
+            <!--            <div style="height: 350px; overflow-y: auto">-->
+            <!--                <ul class="bl-spacing-5px">-->
+            <!--                    @foreach($activeUsers as $user)-->
+            <!--                    <li>-->
+            <!--                        <div class="d-flex align-items-start align-items-lg-center trendingItems gap-2">-->
+            <!--                            <h3 class="font-18px mb-0 flex-shrink-0" style="width: 43px;">-->
+            <!--                                #{{ $user->id }}-->
+            <!--                            </h3>-->
+            <!--                            <div class="d-flex align-items-center flex-wrap gap-2 gap-lg-3">-->
+            <!--                                 <img src="{{asset($user->profile_picture)}}" alt="" style="width: 50px; height: 50px;box-shadow: 0px 0px 8px 0px #1F1F1F40; border:1px solid var(--bs-primary)" class="border-radius-6px" draggable="false" loading="lazy"> -->
+            <!--                                <div>-->
+            <!--                                    <ul>-->
+            <!--                                        <li>-->
+            <!--                                            <a href="#" class="link-dark font-16px d-block text-truncate"-->
+            <!--                                                style="width: 190px;">-->
+            <!--                                {{ $user->getName() }}-->
+            <!--                                    </a>-->
+            <!--                                </li>-->
+            <!--                            </ul>-->
+            <!--                                    <p class="fw-400 m-0 font-14px text-primary"><span-->
+            <!--                                            class=" fw-600">created_at:</span> -->
+            <!--                                    {{ date('d, F, Y', strtotime($user->created_at)) }} </p>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
 
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
+            <!--                        </div>-->
+            <!--                    </li>-->
+            <!--                    @endforeach-->
+            <!--                </ul>-->
+            <!--            </div>-->
 
-                    </div>
-                </div>
-            </div>
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
             
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between flex-nowrap gap-lg-16 gap-xl-3">
-                            <h5 class="card-title mb-0 flex-shrink-0">
-                                In-Active Users
-                            </h5>
-                        </div>
-                        <br>
-                        <div style="height: 350px; overflow-y: auto">
-                            <ul class="bl-spacing-5px">
-                                @foreach($inactiveUsers as $user)
-                                <li>
-                                    <div class="d-flex align-items-start align-items-lg-center trendingItems gap-2">
-                                        <h3 class="font-18px mb-0 flex-shrink-0" style="width: 43px;">
-                                            #{{ $user->id }}
-                                        </h3>
-                                        <div class="d-flex align-items-center flex-wrap gap-2 gap-lg-3">
-                                             <img src="{{asset($user->profile_picture)}}" alt="" style="width: 50px; height: 50px;box-shadow: 0px 0px 8px 0px #1F1F1F40; border:1px solid var(--bs-primary)" class="border-radius-6px" draggable="false" loading="lazy"> 
-                                            <div>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" class="link-dark font-16px d-block text-truncate"
-                                                            style="width: 190px;">
-                                            {{ $user->getName() }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                                <p class="fw-400 m-0 font-14px text-primary"><span
-                                                        class=" fw-600">created_at:</span> 
-                                                {{ date('d, F, Y', strtotime($user->created_at)) }} </p>
-                                            </div>
-                                        </div>
+            <!--<div class="col-xl-6">-->
+            <!--    <div class="card">-->
+            <!--        <div class="card-body">-->
+            <!--            <div class="d-flex align-items-center justify-content-between flex-nowrap gap-lg-16 gap-xl-3">-->
+            <!--                <h5 class="card-title mb-0 flex-shrink-0">-->
+            <!--                    In-Active Users-->
+            <!--                </h5>-->
+            <!--            </div>-->
+            <!--            <br>-->
+            <!--            <div style="height: 350px; overflow-y: auto">-->
+            <!--                <ul class="bl-spacing-5px">-->
+            <!--                    @foreach($inactiveUsers as $user)-->
+            <!--                    <li>-->
+            <!--                        <div class="d-flex align-items-start align-items-lg-center trendingItems gap-2">-->
+            <!--                            <h3 class="font-18px mb-0 flex-shrink-0" style="width: 43px;">-->
+            <!--                                #{{ $user->id }}-->
+            <!--                            </h3>-->
+            <!--                            <div class="d-flex align-items-center flex-wrap gap-2 gap-lg-3">-->
+            <!--                                 <img src="{{asset($user->profile_picture)}}" alt="" style="width: 50px; height: 50px;box-shadow: 0px 0px 8px 0px #1F1F1F40; border:1px solid var(--bs-primary)" class="border-radius-6px" draggable="false" loading="lazy"> -->
+            <!--                                <div>-->
+            <!--                                    <ul>-->
+            <!--                                        <li>-->
+            <!--                                            <a href="#" class="link-dark font-16px d-block text-truncate"-->
+            <!--                                                style="width: 190px;">-->
+            <!--                                {{ $user->getName() }}-->
+            <!--                                    </a>-->
+            <!--                                </li>-->
+            <!--                            </ul>-->
+            <!--                                    <p class="fw-400 m-0 font-14px text-primary"><span-->
+            <!--                                            class=" fw-600">created_at:</span> -->
+            <!--                                    {{ date('d, F, Y', strtotime($user->created_at)) }} </p>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
 
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
+            <!--                        </div>-->
+            <!--                    </li>-->
+            <!--                    @endforeach-->
+            <!--                </ul>-->
+            <!--            </div>-->
 
-                    </div>
-                </div>
-            </div>
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
 
         </div>
     </div>
